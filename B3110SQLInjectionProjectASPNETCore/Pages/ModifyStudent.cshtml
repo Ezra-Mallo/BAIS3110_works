@@ -1,0 +1,147 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCore.Pages.ModifyStudentModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+
+@section scriptContent
+    {
+    <script src="~/libraries/jquery/jquery.js"></script>
+    <script src="~/libraries/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script>
+        function IsFormValid(aForm) {
+            var fName = aForm.FIrstName.value;
+            var lName = aForm.LastName.value;
+            var email = aForm.Email.value;
+            isValid = false;
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            
+            
+            if (fName == null || fName.length === 0) {
+                isValid = false;
+            } else if (lName == null || lName.length === 0) {
+                isValid = false;
+            } else if (email != null && !emailRegex.test(email)) {
+                isValid = false;
+            } else {
+                isValid = true;
+            }
+
+
+            return isValid;
+        }
+    </script>
+   }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Modify Student</h1></td></tr>
+    </table>
+}
+
+
+<div>
+    <form name="ModifyStudentForm" method="post" >
+        <table>
+            <tr>
+                <td>Enter Student ID to find:</td>
+                <td>
+                    <input type="text" asp-for="StudentIDFind" id="StudentIDFind" />
+                    <span asp-validation-for="StudentIDFind"></span>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="Submit" value="Find" disabled="@Model.IsFindButtonDisabled" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+@Model.Message
+
+
+@if(Model.ShowUpdateForm)
+{
+    <div>
+        <form name="ModifyStudentForm2" method="post" onsubmit="return IsFormValid(window.document.ModifyStudentForm2);">      
+            <table>
+                <tr>
+                    <td>Student ID:</td>
+                    <td>
+                        <input type="text" name="StudentID" value="@Model.EnrolledStudentFound.StudentID" style="cursor:not-allowed" />
+                            
+                    </td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input type="text" name="FirstName" value="@Model.EnrolledStudentFound.FirstName" />
+                        @Html.ValidationMessage("FirstName")   <!-- TagHelper, view source in browser-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input type="text" name="LastName" value="@Model.EnrolledStudentFound.LastName" />
+                        @Html.ValidationMessage("LastName")   <!-- TagHelper, view source in browser-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" name="Email" value="@Model.EnrolledStudentFound.Email" />
+                        @Html.ValidationMessage("Email")   <!-- TagHelper, view source in browser-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Program Code:</td>
+                    <td>
+                        <input type="text" name="ProgramCode" value="@Model.EnrolledStudentFound.ProgramCode" />
+                        @Html.ValidationMessage("ProgramCode")   <!-- TagHelper, view source in browser-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Term:</td>
+                    <td>
+                        <input type="text" name="Term" value="@Model.EnrolledStudentFound.Term" />
+                        @Html.ValidationMessage("Term")   <!-- TagHelper, view source in browser-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" name="MajorCode" value="@Model.EnrolledStudentFound.MajorCode" />
+                        @Html.ValidationMessage("MajorCode")   <!-- TagHelper, view source in browser-->
+                    </td>
+                </tr>
+
+
+
+
+
+
+                <tr>
+                    <td>
+                        <input type="submit" name="Submit" value="Modify" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>   
+}
+@if (!string.IsNullOrEmpty(Model.Message) && Model.Message.Contains("Student record updated succesfully."))
+{
+    <script >
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('StudentIDFind').focus();
+        });
+    </script>
+}

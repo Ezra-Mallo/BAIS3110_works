@@ -1,0 +1,86 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCoreFinal.Pages.CreateProgramModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+@section scriptContent
+    {
+    <script type="text/javascript">
+        function isFormValid(aForm) {
+            var pCode = aForm.ProgramCode.value;
+            var desc = aForm.Description.value;
+            var isValid = false;
+            const pCodeRegex = /^[A-Za-z]+$/;
+            const descRegex = /^[A-Za-z ]{1,60}$/;
+
+            if (pCode.length === 0) {
+                alert("Program Code must not be blank. ");
+                aForm.ProgramCode.focus();
+            } else if (pCode.length > 10) {
+                alert("Program Code must be a maximum of 10 characters. ");
+                aForm.ProgramCode.focus();
+            } else if (desc.length === 0) {
+                alert("Description must not be blank.");
+                aForm.Description.focus();
+            } else if (desc.length > 60) {
+                alert("Description must be a maximum of 60 characters.");
+                aForm.ProgramCode.focus();
+            } else if (!pCodeRegex.test(pCode)) {
+                alert('Only characters are allowed for Program Code.');
+                aForm.ProgramCode.focus();
+            } else if (!descRegex.test(desc)) {
+                alert('Only characters are allowed for Description.');
+                aForm.Description.focus();
+            } else {
+                isValid = true;
+            }
+
+            return isValid;
+        }
+
+        function clearForm() {
+            document.getElementById("CreateProgramForm").reset();
+            document.getElementById("ProgramCode").focus();
+        }
+    </script>
+ }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Create Program</h1></td></tr>
+    </table>
+}
+
+
+<form name="CreateProgramForm" method="post" id="CreateProgramForm" onsubmit="return isFormValid(window.document.CreateProgramForm);">
+    <table>
+        <tr>
+            <td>Program Code:</td>
+            <td>
+                <input type="text" asp-for="ProgramCode" />
+                <span asp-validation-for="ProgramCode"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>
+                <input type="text" asp-for="Description" id="Description" />
+                <span asp-validation-for="Description"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="Submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+</form>
+@Model.Message
+@if (Model.MessageResponse == true)
+{
+    <script type="text/javascript">
+        clearForm();
+        @ModelState.IsValid=false;
+    </script>
+}

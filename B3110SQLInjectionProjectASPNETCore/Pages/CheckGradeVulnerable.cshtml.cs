@@ -1,0 +1,68 @@
+using B3110SQLInjectionProjectASPNETCore.Domain;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
+
+namespace B3110SQLInjectionProjectASPNETCore.Pages
+{
+    public class CheckGradeVulnerableModel : PageModel
+    {
+        public string Message { get; set; } = string.Empty;
+        public bool MessageResponse { get; set; }
+
+        [BindProperty]
+        public string StudentIDFind { get; set; }
+
+        [BindProperty]
+        public string TermFind { get; set; } = string.Empty;
+
+        [BindProperty]
+        public List<ExamScore> CurrentExamescores { get; set; } = new();
+        [BindProperty]
+        public Student EnrolledStudent { get; set; } = new();
+
+
+
+        public void OnGet()
+        {
+        }
+
+
+        public void OnPost()
+        {
+            if (StudentIDFind != null)
+            {
+                if (ModelState.IsValid)
+                {
+
+                    //BCS RequestDirector = new();
+                    //EnrolledStudent = RequestDirector.FindStudent(StudentIDFind);
+                    //if (EnrolledStudent != null)
+                    //{
+                        BCS ExamDirector = new();
+                        CurrentExamescores = ExamDirector.FindGradeVulnerableAdapter(StudentIDFind, TermFind);
+                        if (CurrentExamescores != null)
+                        {
+                            MessageResponse = true;
+                            Message = "Below are your grades.";
+                        }
+                        else
+                        {
+                            MessageResponse = false;
+                            Message = "Students Exam Records does not exist.";
+                        }
+                    //}
+                    //else
+                    //{
+                    //    MessageResponse = false;
+                    //    Message = "Student profile does not exist.";
+                    //}
+
+
+
+                }
+            }
+        }
+
+    }
+}

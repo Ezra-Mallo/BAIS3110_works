@@ -1,0 +1,94 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCore.Pages.CheckGradeModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+@section scriptContent
+    {
+    <script></script>
+    }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Find Student's Grade'</h1></td></tr>
+    </table>
+}
+
+<form name="FindStudentGradeForm" method="post">
+    <table id="table">
+        <tr>
+            <td>Enter Student ID:</td>
+            <td>
+                <input type="text" asp-for="StudentIDFind" />
+                <span asp-validation-for="StudentIDFind"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Term:</td>
+            <td>
+                <select asp-for="TermFind" class="form-control" value="">
+                    <option value="">Make a selection</option>
+                    <option value="Winter 2023">Winter 2023</option>
+                    <option value="Summer 2023">Summer 2023</option>
+                    <option value="Fall 2023">Fall 2023</option>
+                </select>
+                <span asp-validation-for="TermFind"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="Find" name="Find" />
+            </td>
+        </tr>
+        <tr>
+    </table>
+</form>
+
+
+<br />
+@Model.Message
+@if (Model.MessageResponse == true)
+{
+
+    <table border="1">
+
+        <tr>
+            <th>Student ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Program Code</th>
+            <th>MajorCode:</th>
+        </tr>
+        <tr>
+            <td>@Model.EnrolledStudent.StudentID</td>
+            <td>@Model.EnrolledStudent.FirstName</td>
+            <td>@Model.EnrolledStudent.LastName</td>
+            <td>@Model.EnrolledStudent.Email</td>
+            <td>@Model.EnrolledStudent.ProgramCode</td>
+            <td>@Model.EnrolledStudent.MajorCode</td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <table border ="1" cellspacing="4">
+        <tr>
+            <th>CourseCode</th>
+            <th>Term</th>
+            <th>Semester</th>
+            <th>Scores</th>
+        </tr>
+        @foreach (var examscore in Model.CurrentExamescores)
+        {
+            <tr>
+                <td>@examscore.CourseCode</td>
+                <td>@examscore.Term</td>
+                <td>@examscore.Semester</td>
+                <td>@examscore.Scores</td>
+            </tr>
+        }
+    </table>
+}
+

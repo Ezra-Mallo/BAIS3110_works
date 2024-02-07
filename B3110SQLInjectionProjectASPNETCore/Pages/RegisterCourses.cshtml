@@ -1,0 +1,115 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCore.Pages.RegisterCoursesModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+
+@section scriptContent
+    {
+    <script src="~/libraries/jquery/jquery.js"></script>
+    <script src="~/libraries/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+   }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Modify Student</h1></td></tr>
+    </table>
+}
+
+
+<div>
+    <form name="ModifyStudentForm" method="post" >
+        <!--<form name="ModifyStudentForm" method="post" action="~/viewhttprequest">            -->
+        <table>
+            <tr>
+                <td>Enter Student ID to find:</td>
+                <td>
+                    <input type="text" asp-for="StudentIDFind" id="StudentIDFind" />
+                    <span asp-validation-for="StudentIDFind"></span>
+                </td>                
+            </tr>
+            <tr>
+                <td>Semester:</td>
+                <td>
+                    <select asp-for="SemesterFind" class="form-control" value="">
+                        <option value="">Make a selection</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <span asp-validation-for="SemesterFind"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="Submit" value="Find" disabled="@Model.IsFindButtonDisabled" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+@Model.Message
+
+
+@if(Model.ShowUpdateForm)
+{
+    <div>
+        <form name="ModifyStudentForm2" method="post" >      
+            <table border="1", cellspacing="4">
+                <tr>
+                    <th>StudentID</th>
+                    <th>FirstName</th>
+                    <th>FirstName</th>
+                    <th>ProgramCode</th>
+                    <th>MajorCode</th>
+                    <th>Term</th>
+                </tr>                
+                <tr>
+                    <td>@Model.EnrolledStudentFound.StudentID</td>
+                    <td>@Model.EnrolledStudentFound.FirstName</td>
+                    <td>@Model.EnrolledStudentFound.LastName</td>
+                    <td>@Model.EnrolledStudentFound.ProgramCode</td>
+                    <td>@Model.EnrolledStudentFound.MajorCode</td>
+                    <td>@Model.EnrolledStudentFound.Term</td>
+                </tr>
+            </table>
+
+            <br />
+            <table border="1" , cellspacing="4">
+                <tr>
+                    <td>Semester</td>
+                    <th>CourseCode</th>
+                    <th>Description</th>
+                    <th>Score</th>
+                </tr>
+                Model.CreditCourses2 = Model.CreditCourses
+                @foreach (var creditCourse in Model.CreditCourses)
+                    {
+                    <tr>
+
+                        <td>@creditCourse.Semester</td>
+                        <td>@creditCourse.CourseCode</td>
+                        <td>@creditCourse.Description</td>
+                        <td>@Model.Scores</td>
+                    </tr>
+                    }
+                
+                <tr>
+                    <td>
+                        <input type="submit" name="Submit" value="Close" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>   
+}
+@if (!string.IsNullOrEmpty(Model.Message) && Model.Message.Contains("Student record updated succesfully."))
+{
+    <script >
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('StudentIDFind').focus();
+        });
+    </script>
+}

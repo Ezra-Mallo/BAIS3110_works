@@ -1,0 +1,101 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCoreFinal.Pages.EnrollStudentModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+@section scriptContent
+    {
+        <script src="~/libraries/jquery/jquery.js"></script>
+        <script src="~/libraries/jquery-validate/jquery.validate.js"></script>
+        <script src="~/libraries/jquery-validate-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Enroll Student</h3></td></tr>
+    </table>
+}
+
+
+<form name="EnrollStudentForm" method="post" id="EnrollStudentForm">
+    <!--<form name="EnrollStudentForm" method="post" id="EnrollStudentForm" action="~/ViewHTTPRequest">-->
+    <table>
+        <tr>
+            <td>StudentID:</td>
+            <td>
+                <input type="text" asp-for="StudentID" />
+                <span asp-validation-for="StudentID"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>FirstName:</td>
+            <td>
+                <input type="text" asp-for="FirstName" />
+                <span asp-validation-for="FirstName"></span>
+            </td>
+
+        </tr>
+        <tr>
+            <td>LastName:</td>
+            <td>
+                <input type="text" asp-for="LastName" />
+                <span asp-validation-for="LastName"></span>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>
+                <input type="email" asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Select Program Code:</td>
+            <td>
+                <select asp-for="ProgramCode" asp-items="@(Model.ProgramCodeList != null ? new SelectList(Model.ProgramCodeList) : Enumerable.Empty<SelectListItem>())">
+                    <option value="">-- Select Program Code --</option>
+                </select>                    
+                <span asp-validation-for="ProgramCode"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Term:</td>            
+            <td>                
+                <select asp-for="Term" class="form-control" value="">
+                    <option value="">Make a selection</option>
+                    <option value="Winter 2023">Winter 2023</option>
+                    <option value="Summer 2023">Summer 2023</option>
+                    <option value="Fall 2023">Fall 2023</option>
+                </select>
+                <span asp-validation-for="Term" ></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Major Code:</td>
+            <td>
+                <select asp-for="MajorCode" asp-items="@(Model.MajorCodeList != null ? new SelectList(Model.MajorCodeList) : Enumerable.Empty<SelectListItem>())">
+                    <option value="">-- Select Your Major --</option>
+                </select>
+                <span asp-validation-for="MajorCode" ></span>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="Submit" value="Submit" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="reset" name="Reset" value="Reset" />
+            </td>
+        </tr>
+    </table>
+</form>
+@Model.Message

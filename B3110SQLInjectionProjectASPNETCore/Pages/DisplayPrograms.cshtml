@@ -1,0 +1,27 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCore.Pages.FindProgramsModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Find Program</h3></td></tr>
+    </table>
+}
+<form name="FindProgramForm" method="post">
+    <table id="table">
+        <tr>
+            <th>Program Code</th>
+            <th>Description</th>
+        </tr>
+        @foreach (var aProgram in Model.allPrograms)
+        {
+            <tr>
+                <td>@aProgram.ProgramCode</td>
+                <td>@aProgram.Description</td>
+            </tr>
+        }                    
+        </table>
+</form>

@@ -1,0 +1,82 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCore.Pages.FindStudentModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+@section scriptContent
+    {
+    <script></script>
+    }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Find Student</h1></td></tr>
+    </table>
+}
+
+<form name="FindStudentForm" method="post">
+    <table id="table">
+        <tr>
+            <td>Enter Student ID:</td>
+            <td>
+                <input type="text" asp-for="StudentID" />
+                <span asp-validation-for="StudentID"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Find" name="Find" />
+            </td>
+        </tr>
+        <tr>
+    </table>
+</form>
+
+<br />
+<br />
+@Model.Message
+@if (Model.MessageResponse == true)
+{
+
+    <table border="1">
+
+        <tr>
+            <td>Student ID:</td>
+            <td>@Model.EnrolledStudent.StudentID</td>
+        </tr>
+        <tr>
+            <td>First Name:</td>
+            <td>@Model.EnrolledStudent.FirstName</td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td>@Model.EnrolledStudent.LastName</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>@Model.EnrolledStudent.Email</td>
+        </tr>
+
+        <tr>
+            <td>Program Code:</td>
+            <td>@Model.EnrolledStudent.ProgramCode</td>
+        </tr>
+        <tr>
+            <td>Term:</td>
+            <td>@Model.EnrolledStudent.Term</td>
+        </tr>
+        <tr>
+            <td>MajorCode:</td>
+            <td>@Model.EnrolledStudent.MajorCode</td>
+        </tr>
+
+
+
+
+
+
+
+    </table>
+}
+

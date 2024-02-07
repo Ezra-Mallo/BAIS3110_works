@@ -1,0 +1,34 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCoreFinal.Pages.RemoveStudentModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+@section scriptContent
+    {
+    <script></script>
+    }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Remove Student</h1></td></tr>
+    </table>
+}
+
+<form name="RemoveStudentForm" method="post">
+    <table>
+        <tr>
+            <td>Enter Student ID to find:</td>
+            <td>
+                <input type="text" asp-for="StudentID" />
+                <span asp-validation-for="StudentID"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Delete" name="Delete" />
+            </td>
+        </tr>
+    </table>
+</form>
+@Model.Message
