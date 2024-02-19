@@ -1,0 +1,12 @@
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\bin\Debug\EncryptionHashConsoleASPNetaFramework.exe.config
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\bin\Debug\EncryptionHashConsoleASPNetaFramework.exe
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\bin\Debug\EncryptionHashConsoleASPNetaFramework.pdb
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.xml
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\obj\Debug\EncryptionHashConsoleASPNetaFramework.csproj.AssemblyReference.cache
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\obj\Debug\EncryptionHashConsoleASPNetaFramework.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\obj\Debug\EncryptionHashConsoleASPNetaFramework.csproj.CopyComplete
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\obj\Debug\EncryptionHashConsoleASPNetaFramework.exe
+C:\Users\HP\source\repos\EncryptionHashConsoleASPNetaFramework\obj\Debug\EncryptionHashConsoleASPNetaFramework.pdb
