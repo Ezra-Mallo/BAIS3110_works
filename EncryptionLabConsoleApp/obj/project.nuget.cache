@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Gcol+FL9sUi5biCWEgzi2xd6+Xh2SucOO/2t1jAvjndGbOpHyrk6HXyzmoXDIGH4E3U80b0ire4VZx/qUfWApg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HP\\source\\repos\\EncryptionLabConsoleApp\\EncryptionLabConsoleApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.0\\microsoft.aspnetcore.cryptography.internal.8.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.0\\microsoft.aspnetcore.cryptography.keyderivation.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
