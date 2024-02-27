@@ -1,0 +1,104 @@
+﻿@page
+@model B3110SQLInjectionProjectASPNETCore.Pages.RecordStudentScoreModel
+@{
+    ViewData["Title"] = "SQLInjection project.";
+}
+
+@section scriptContent
+    {
+    <script src="~/libraries/jquery/jquery.js"></script>
+    <script src="~/libraries/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libraries/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+   }
+
+@section headerContent
+    {
+    <table>
+        <tr><td><h1>Record Score for Student |  @Model.User.Identity.Name | @Model.UserRole </h1></td></tr>
+    </table>
+}
+
+
+<div>
+    <form name="RecordScoreForm" method="post">
+        <!--<form name="ModifyStudentForm" method="post" action="~/viewhttprequest">            -->
+        <table>
+            <tr>
+                <td>Enter Student ID to find:</td>
+                <td>
+                    <input type="text" asp-for="StudentIDFind" id="StudentIDFind" />
+                    <span style="font-size:smaller;color:red;font-style:italic" asp-validation-for="StudentIDFind"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Enter Course Code:</td>
+                <td>
+                    <input type="text" asp-for="CourseCodeFind" id="CourseCodeFind" />
+                    <span style="font-size:smaller;color:red;font-style:italic" asp-validation-for="CourseCodeFind"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Enter Score:</td>
+                <td>
+                    <input type="text" asp-for="NewScore" id="NewScore" />
+                    <span style="font-size:smaller;color:red;font-style:italic" asp-validation-for="NewScore"></span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <input type="submit" name="Submit" value="Find & Update" disabled="@Model.IsFindButtonDisabled" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+@Model.Message
+
+
+@if (Model.ShowUpdateForm)
+{
+    <div>
+        <form name="ModifyStudentForm2" method="post">
+            <table border="1" , cellspacing="4">
+                <tr>                    
+                    <th>StudentID</th>
+                    <th>ProgramCode</th>
+                    <th>CourseCode</th>
+                    <th>MajorCode</th>
+                    <th>Term</th>
+                    <th>Semester</th>
+                    <th>Scores</th>
+                    <th>New Score</th>
+                </tr>
+
+                <tr>
+                    <td>@Model.ReturnRegisteredCourse.StudentID</td>
+                    <td>@Model.ReturnRegisteredCourse.ProgramCode</td>
+                    <td>@Model.ReturnRegisteredCourse.CourseCode</td>
+                    <td>@Model.ReturnRegisteredCourse.MajorCode</td>
+                    <td>@Model.ReturnRegisteredCourse.Term</td>
+                    <td>@Model.ReturnRegisteredCourse.Semester</td>
+                    <td>@Model.ReturnRegisteredCourse.Scores</td>
+                    <td>@Model.NewScore</td>
+
+                </tr>
+                
+                <tr>
+                    <td>
+                        <input type="submit" name="Submit" value="Close" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+}
+@if (!string.IsNullOrEmpty(Model.Message) && Model.Message.Contains("Student record updated succesfully."))
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('StudentIDFind').focus();
+        });
+    </script>
+}
